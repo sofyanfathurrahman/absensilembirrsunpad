@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Logbook Harian</title>
+  <link rel="stylesheet" href="logbookpegawai.css">
+</head>
+<body>
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <ul>
+      <li><a href="pegawai.html">Dashboard</a></li>
+     
+    </ul>
+  </aside>
+
+  <!-- Form Input Logbook -->
+  <main>
+    <div class="logbook-harian-container">
+      <section class="logbook-harian-form">
+        <h2 class="logbook-title">Isi Logbook Harian</h2>
+        <form id="logbookForm">
+          <div class="form-group">
+            <label for="date">Tanggal:</label>
+            <input type="date" id="date" required>
+          </div>
+
+          <div class="form-group">
+            <label for="task">Deskripsi Tugas:</label>
+            <textarea id="task" rows="4" placeholder="Tulis tugas atau pekerjaan Anda" required></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="start-time">Waktu Mulai:</label>
+            <input type="time" id="start-time" required>
+          </div>
+
+          <div class="form-group">
+            <label for="end-time">Waktu Selesai:</label>
+            <input type="time" id="end-time" required>
+          </div>
+
+          <div class="form-group">
+            <label for="notes">Catatan Tambahan:</label>
+            <textarea id="notes" rows="2" placeholder="Opsional"></textarea>
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="btn-submit">Kirim Logbook</button>
+            <button type="button" id="downloadPDF" class="btn-download">Unduh Sebagai PDF</button>
+          </div>
+        </form>
+      </section>
+    </div>
+  </main>
+
+  <script src="logbookpegawai.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</body>
+</html>
