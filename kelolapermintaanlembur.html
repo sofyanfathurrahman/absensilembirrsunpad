@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RS UNPAD Admin</title>
+  <link rel="stylesheet" href="kelolapermintaanlembur.css">
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script> <!-- Link FontAwesome Icons -->
+</head>
+<body>
+  <div class="sidebar">
+    <h2>Admin Panel</h2>
+    <ul>
+      <li><a href="#"><i class="fas fa-users"></i> Data Pegawai</a></li>
+      <li><a href="#"><i class="fas fa-calendar-alt"></i> Daftar Absensi</a></li>
+      <li><a href="#"><i class="fas fa-book"></i> Manajemen Logbook</a></li>
+      <li><a href="#"><i class="fas fa-bullhorn"></i> Manajemen Pengumuman</a></li>
+      <li><a href="#" id="logout"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+    </ul>
+  </div>
+
+  <div class="main-content">
+    <h1>RS Unpad Admin</h1>
+    <section>
+      <h2>Data Pegawai</h2>
+      <button class="btn tambah-pegawai">Tambah Pegawai</button>
+      <table>
+        <thead>
+          <tr>
+            <th>No</th>
+            <th>Nama</th>
+            <th>Email</th>
+            <th>Role</th>
+            <th>Aksi</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>John Doe</td>
+            <td>john.doe@example.com</td>
+            <td>Pegawai</td>
+            <td>
+              <button class="btn edit">Edit</button>
+              <button class="btn delete">Hapus</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Daftar Absensi</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Tanggal</th>
+            <th>Jam Masuk</th>
+            <th>Jam Keluar</th>
+            <th>Aksi</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>2024-11-20</td>
+            <td>08:00</td>
+            <td>17:00</td>
+            <td><button class="btn koreksi">Koreksi</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </div>
+  <script src="kelolapermintaanlembur.js"></script>
+</body>
+</html>

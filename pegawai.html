@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard Pegawai</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"/>
+    <link rel="icon" type="image/png" href="images/rs unpad.png">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css"/>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="pegawai.css">
+
+</head>
+<header>
+    <nav class="navbar">
+      <div class="logo">
+        <img src="images/logors.png" alt="RS Unpad Logo" class="logo-img">
+      </div>
+      <div class="nav-right">
+        <div class="notification" onclick="toggleNotification()">
+          🔔
+          <div class="notification-popup">
+            <div class="notification-item" onclick="showNotificationDetail('Detail notifikasi 1')">
+              Notifikasi 1
+            </div>
+            <div class="notification-item" onclick="showNotificationDetail('Detail notifikasi 2')">
+              Notifikasi 2
+            </div>
+            <div class="notification-item" onclick="showNotificationDetail('Detail notifikasi 3')">
+              Notifikasi 3
+            </div>
+          </div>
+        </div>
+        <div class="user-icon" onclick="toggleUserMenu()">👤</div>
+        <div class="user-menu">
+          <a href="#">Profile</a>
+          <a href="#" onclick="logout()">Logout</a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Main Content -->
+  <main>
+    <br>
+    <h1>Selamat Datang, <span id="username">Rekan</span></h1>
+    <p>Pilih menu yang tersedia untuk mulai bekerja.</p>
+    <hr>
+  </main>
+
+  <!-- Popup for Notification Detail -->
+  <div id="popup" class="popup">
+    <div class="popup-content">
+      <span class="close" onclick="closePopup()">&times;</span>
+      <p id="popup-text"></p>
+    </div>
+  </div>
+ 
+
+ <!-- Card Section -->
+<section class="card-container">
+    <!-- Card 1 -->
+    <a href="absensi.html" class="card">
+      <img src="images/Absen.png" alt="Icon Card 1" class="card-icon">
+      <h3>Absensi</h3>
+      <p>Jangan Lupa Memulai Dengan Absensi Yaa</p>
+    </a>
+    
+    <!-- Card 2 -->
+    <a href="lembur.html" class="card">
+      <img src="images/Lembur.png" alt="Icon Card 2" class="card-icon">
+      <h3>Lembur</h3>
+      <p>Informasi Lembur Atau Pengajuan Lembur</p>
+    </a>
+    
+    <!-- Card 3 -->
+    <a href="logbookoegawai.html" class="card">
+      <img src="images/logg.png" alt="Icon Card 3" class="card-icon">
+      <h3>Log Book</h3>
+      <p>Progres atau Catatan Harian1.</p>
+    </a>
+  </section>
+
+  <!-- Grafik dan Pengumuman Section -->
+<section class="main-container">
+    <!-- Grafik Section -->
+    <div class="chart-wrapper">
+      <h3>Grafik Absensi (3 Bulan Terakhir)</h3>
+      <canvas id="attendanceChart"></canvas>
+    </div>
+  
+    <div class="chart-wrapper">
+      <h3>Grafik Lembur/Kinerja Kerja</h3>
+      <canvas id="performanceChart"></canvas>
+    </div>
+  
+    <!-- Kotak Pengumuman -->
+    <div class="announcement-box">
+      <h3>Pengumuman</h3>
+      <ul>
+        <li>
+          <strong>Deadline Laporan:</strong> 15 November 2024
+        </li>
+        <li>
+          <strong>Rapat Divisi:</strong> Jam 14:00 di Ruang A
+        </li>
+        <li>
+          <strong>Update Jadwal:</strong> Shift malam dimulai pukul 20:00
+        </li>
+        <li>
+          <strong>Informasi Libur:</strong> Hari Minggu libur nasional
+        </li>
+      </ul>
+    </div>
+  </section>
+  
+  <!-- Link ke Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    // Data untuk Grafik Absensi
+    const attendanceData = {
+      labels: ["Minggu 1", "Minggu 2", "Minggu 3", "Minggu 4"],
+      datasets: [
+        {
+          label: "Januari",
+          data: [10, 12, 15, 9],
+          backgroundColor: "rgba(82, 204, 182, 0.6)",
+          borderColor: "rgba(82, 204, 182, 1)",
+          borderWidth: 1,
+        },
+        {
+          label: "Februari",
+          data: [8, 10, 14, 12],
+          backgroundColor: "rgba(54, 162, 235, 0.6)",
+          borderColor: "rgba(54, 162, 235, 1)",
+          borderWidth: 1,
+        },
+        {
+          label: "Maret",
+          data: [12, 14, 10, 11],
+          backgroundColor: "rgba(255, 206, 86, 0.6)",
+          borderColor: "rgba(255, 206, 86, 1)",
+          borderWidth: 1,
+        },
+      ],
+    };
+  
+    const attendanceConfig = {
+      type: "bar",
+      data: attendanceData,
+      options: {
+        responsive: true,
+        plugins: {
+          legend: {
+            position: "top",
+          },
+          title: {
+            display: true,
+            text: "Grafik Absensi per Minggu",
+          },
+        },
+      },
+    };
+  
+    // Data untuk Grafik Lembur/Kinerja Kerja
+    const performanceData = {
+      labels: ["Minggu 1", "Minggu 2", "Minggu 3", "Minggu 4"],
+      datasets: [
+        {
+          label: "Jam Lembur",
+          data: [5, 8, 6, 4],
+          backgroundColor: "rgba(255, 99, 132, 0.6)",
+          borderColor: "rgba(255, 99, 132, 1)",
+          borderWidth: 1,
+        },
+      ],
+    };
+  
+    const performanceConfig = {
+      type: "line",
+      data: performanceData,
+      options: {
+        responsive: true,
+        plugins: {
+          legend: {
+            position: "top",
+          },
+          title: {
+            display: true,
+            text: "Grafik Lembur/Kinerja Kerja per Minggu",
+          },
+        },
+      },
+    };
+  
+    // Render Grafik ke Canvas
+    const attendanceChart = new Chart(
+      document.getElementById("attendanceChart"),
+      attendanceConfig
+    );
+  
+    const performanceChart = new Chart(
+      document.getElementById("performanceChart"),
+      performanceConfig
+    );
+  </script>
+  
+  
+<br><br><br>
+  <footer>
+    <p>&copy; RS Unpad 2024. All Rights Reserved.</p>
+  </footer>
+</body>
+   <!-- Boostrap5 js cdn links -->
+   
+
+   <script src="pegawai.js" defer></script>
+   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/id/pepper.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.1.0/js/bootstrap.min.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daftar Absensi - RS Unpad</title>
+    <link rel="stylesheet" href="daftar.absensi.admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h2 style="color: white; text-align: center;">Admin Panel</h2>
+        <a href="admin.html">📋 Data Pegawai</a>
+        <a href="daftar-absensi.html" class="active">🕒 Daftar Absensi</a>
+        <a href="#logbook">📘 Manajemen Logbook</a>
+        <a href="#pengumuman">📢 Manajemen Pengumuman</a>
+        <a href="#" class="logout">🔒 Logout</a>
+    </div>
+
+    <!-- Main Content -->
+    <div class="content">
+        <h1>Daftar Absensi</h1>
+        <p>Kelola daftar absensi pegawai dengan mudah di sini.</p>
+
+        <!-- Filter and Actions -->
+        <div style="margin-bottom: 20px;">
+            <label for="filter-date">Filter Tanggal: </label>
+            <input type="date" id="filter-date" style="padding: 8px; margin-right: 10px;">
+            <button class="button">Filter</button>
+        </div>
+
+        <!-- Table Container -->
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Nama Pegawai</th>
+                        <th>Tanggal</th>
+                        <th>Jam Masuk</th>
+                        <th>Jam Keluar</th>
+                        <th>Status</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody id="absensi-data">
+                    <tr>
+                        <td>1</td>
+                        <td>John Doe</td>
+                        <td>2024-11-20</td>
+                        <td>08:00</td>
+                        <td>17:00</td>
+                        <td>Hadir</td>
+                        <td>
+                            <button class="button koreksi" onclick="openModal(this)"><i class="fas fa-edit"></i> Koreksi</button>
+                            <button class="button delete"><i class="fas fa-trash"></i> Hapus</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Jane Smith</td>
+                        <td>2024-11-20</td>
+                        <td>08:30</td>
+                        <td>17:15</td>
+                        <td>Hadir</td>
+                        <td>
+                            <button class="button koreksi" onclick="openModal(this)"><i class="fas fa-edit"></i> Koreksi</button>
+                            <button class="button delete"><i class="fas fa-trash"></i> Hapus</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Modal for Editing -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2>Koreksi Absensi</h2>
+            <form id="edit-form">
+                <label for="edit-name">Nama Pegawai:</label>
+                <input type="text" id="edit-name" readonly>
+                
+                <label for="edit-date">Tanggal:</label>
+                <input type="date" id="edit-date">
+                
+                <label for="edit-in-time">Jam Masuk:</label>
+                <input type="time" id="edit-in-time">
+                
+                <label for="edit-out-time">Jam Keluar:</label>
+                <input type="time" id="edit-out-time">
+                
+                <label for="edit-status">Status:</label>
+                <select id="edit-status">
+                    <option value="Hadir">Hadir</option>
+                    <option value="Terlambat">Terlambat</option>
+                    <option value="Alpa">Alpa</option>
+                </select>
+                <button type="button" class="button save" onclick="saveChanges()">Simpan</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="daftar.absensi.admin.js"></script>
+</body>
+</html>
